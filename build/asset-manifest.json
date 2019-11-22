@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/scale-randomizer/static/js/main.ebe1e0d1.chunk.js",
+    "main.js.map": "/scale-randomizer/static/js/main.ebe1e0d1.chunk.js.map",
+    "runtime~main.js": "/scale-randomizer/static/js/runtime~main.2186f33b.js",
+    "runtime~main.js.map": "/scale-randomizer/static/js/runtime~main.2186f33b.js.map",
+    "static/js/2.d4337da4.chunk.js": "/scale-randomizer/static/js/2.d4337da4.chunk.js",
+    "static/js/2.d4337da4.chunk.js.map": "/scale-randomizer/static/js/2.d4337da4.chunk.js.map",
+    "index.html": "/scale-randomizer/index.html",
+    "precache-manifest.7d9c7854d42ed531f35344149822664e.js": "/scale-randomizer/precache-manifest.7d9c7854d42ed531f35344149822664e.js",
+    "service-worker.js": "/scale-randomizer/service-worker.js"
+  }
+}
