@@ -14,16 +14,21 @@ const LevelSelected = ({ level, onChange }) => {
   return (
     <Container maxWidth="sm">
       <Paper className={classes.root}>
-        <Typography align="center" gutterBottom="true" variant="subtitle1">
+        <Typography align="center" gutterBottom={true} variant="subtitle1">
           You have selected level {level}
         </Typography>
         <div>
-          <Button size="small" variant="contained" color="primary" onClick={onChange}>
+          <Button
+            size="small"
+            variant="contained"
+            color="primary"
+            onClick={onChange}
+          >
             Select Different Level
           </Button>
-          </div>
+        </div>
       </Paper>
-      </Container>
+    </Container>
   );
 };
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import _ from "lodash";
 import { Container, Fab, Typography, Button } from "@material-ui/core";
 import { ArrowForward } from "@material-ui/icons";
 import { SYLLABUS, SECTIONS, SECTIONS_BY_LEVEL } from "../Constants";
@@ -29,7 +28,6 @@ const Randomizer = ({ level }) => {
   const sections = SECTIONS_BY_LEVEL[level].map(i => SECTIONS[i]);
 
   let i = counter;
-  //console.log('set i to counter');
 
   const onButtonClick = () => {
     if (i >= sections.length - 1) {
@@ -37,10 +35,8 @@ const Randomizer = ({ level }) => {
       setDisplayLine2("How about another?");
       setCounter(-1);
     } else {
-      //console.log(i);
-
       i++;
-      //console.log(i);
+
       let randomKey = "";
       let keys = Object.keys(syllabus);
 

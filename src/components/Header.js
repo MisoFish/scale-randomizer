@@ -6,7 +6,9 @@ const Header = () => {
     <div>
       <AppBar>
         <Toolbar>
-          <Typography variant="h6">RCM Piano Technical Requirements Randomizer</Typography>
+          <Typography variant="h6">
+            RCM Piano Technical Requirements Randomizer
+          </Typography>
         </Toolbar>
       </AppBar>
       <Toolbar />
