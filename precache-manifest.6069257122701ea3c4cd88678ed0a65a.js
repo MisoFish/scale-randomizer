@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "480edb87992fa6babab111c967cf40a7",
+    "revision": "ca6d8c2ba05b56c85e149c02dda57cf6",
     "url": "/scale-randomizer/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/scale-randomizer/static/js/2.9a86285d.chunk.js"
   },
   {
-    "revision": "1ed7aefa92742c5c54f4",
-    "url": "/scale-randomizer/static/js/main.fd020d75.chunk.js"
+    "revision": "5c8d6efe15c8e3deab50",
+    "url": "/scale-randomizer/static/js/main.c1c8de50.chunk.js"
   },
   {
     "revision": "2bc90de800f572775baa",
