@@ -30,6 +30,7 @@ export const SECTIONS = [
 
 export const SECTIONS_BY_LEVEL = {
   1: _.range(0, 2).concat(17).concat(5).concat(_.range(18, 21)),
+  2: _.range(0, 4).concat(5).concat(_.range(19, 21)),
   7: _.range(0, 6).concat(_.range(9, 17)),
   8: _.range(0, 6).concat(_.range(9, 17)),
   9: _.range(0, 17),
@@ -43,6 +44,14 @@ export const SYLLABUS = {
     A: [1, 17, 20],
     E: [1, 17, 20],
     D: [1, 17, 20],
+  },
+  2: {
+    C: [3],
+    G: [0, 1, 2, 3, 5, 19, 20],
+    F: [0, 19],
+    E: [1, 2, 20],
+    D: [1, 2, 20],
+    Bb: [0, 19],
   },
   7: {
     C: [0, 1, 2, 9, 10, 11, 12, 13, 14, 15, 16],
