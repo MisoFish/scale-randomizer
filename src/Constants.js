@@ -31,11 +31,13 @@ export const SECTIONS = [
 export const SECTIONS_BY_LEVEL = {
   1: _.range(0, 2).concat(17).concat(5).concat(_.range(18, 21)),
   2: _.range(0, 4).concat(5).concat(_.range(19, 21)),
+  3: _.range(0, 6).concat(_.range(19, 21)).concat(11).concat(_.range(13, 15)),
   4: _.range(0, 3)
     .concat(_.range(4, 6))
     .concat(_.range(19, 21))
     .concat(_.range(13, 15)),
   5: _.range(0, 6).concat(_.range(19, 21)).concat(11).concat(_.range(13, 15)),
+  6: _.range(0, 6).concat(_.range(19, 21)).concat(11).concat(_.range(13, 15)),
   7: _.range(0, 6).concat(_.range(9, 17)),
   8: _.range(0, 6).concat(_.range(9, 17)),
   9: _.range(0, 17),
@@ -58,6 +60,12 @@ export const SYLLABUS = {
     D: [1, 2, 20],
     Bb: [0, 19],
   },
+  3: {
+    A: [0, 1, 2, 3, 4, 5, 11, 13, 14, 19, 20],
+    E: [0, 1, 2, 11, 13, 14, 19, 20],
+    F: [0, 1, 2, 5, 11, 13, 14, 19, 20],
+    Ab: [0, 11, 13, 19],
+  },
   4: {
     D: [0, 13, 19],
     B: [1, 2, 14, 20],
@@ -68,6 +76,12 @@ export const SYLLABUS = {
     Eb: [0, 13, 19],
   },
   5: {
+    A: [0, 1, 2, 3, 4, 5, 11, 13, 14, 19, 20],
+    E: [0, 1, 2, 11, 13, 14, 19, 20],
+    F: [0, 1, 2, 5, 11, 13, 14, 19, 20],
+    Ab: [0, 11, 13, 19],
+  },
+  6: {
     A: [0, 1, 2, 3, 4, 5, 11, 13, 14, 19, 20],
     E: [0, 1, 2, 11, 13, 14, 19, 20],
     F: [0, 1, 2, 5, 11, 13, 14, 19, 20],
