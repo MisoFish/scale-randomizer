@@ -1,3 +1,7 @@
+## Scale Randomizer
+
+This React-based SPA provides a randomized scale selection tool for piano students preparing for exams. By simulating the experience of an examiner who selects scales at random during the exam, students can build their confidence and ability to recall scales at any time.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
