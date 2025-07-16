@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 export const LOWEST_LEVEL = 1;
-export const HIGHEST_LEVEL_PLUS_1 = 10;
+export const HIGHEST_LEVEL_PLUS_1 = 11;
 export const LEVELS = _.range(LOWEST_LEVEL, HIGHEST_LEVEL_PLUS_1);
 
 export const SECTIONS = [
@@ -10,22 +10,39 @@ export const SECTIONS = [
   ['melodic minor', 'scale'],
   ['major', 'formula pattern'],
   ['harmonic minor', 'formula pattern'],
-  ['', 'chromatic scale'],
+  ['', 'chromatic scale'], //5
   ['major', 'in octaves'],
   ['harmonic minor', 'in octaves'],
   ['melodic minor', 'in octaves'],
   ['major', 'four-note chords'],
-  ['minor', 'four-note chords'],
+  ['minor', 'four-note chords'], //10
   ['major', 'dominant 7th chords'],
   ['minor', 'diminished 7th chords'],
   ['major', 'arpeggio'],
   ['minor', 'arpeggio'],
-  ['major', 'dominant 7th arpeggio'],
+  ['major', 'dominant 7th arpeggio'], //15
   ['minor', 'diminished 7th arpeggio'],
   ['natural minor', 'scale'],
   ['major', 'contrary motion'],
   ['major', 'triads'],
   ['minor', 'triads'], //20
+  ['major', 'separated by 3rd'],
+  ['major', 'separated by 6th'],
+  ['', 'chromatic in octaves'],
+  ['major', 'arpeggio root position'],
+  ['major', 'arpeggio 1st inversion'], //25
+  ['major', 'arpeggio 2nd inversion'],
+  ['minor', 'arpeggio root position'],
+  ['minor', 'arpeggio 1st inversion'],
+  ['minor', 'arpeggio 2nd inversion'],
+  ['major', 'dominant 7th arpeggio root position'], //30
+  ['major', 'dominant 7th arpeggio 1st inversion'],
+  ['major', 'dominant 7th arpeggio 2nd inversion'],
+  ['major', 'dominant 7th arpeggio 3rd inversion'],
+  ['minor', 'diminished 7th arpeggio root position'],
+  ['minor', 'diminished 7th arpeggio 1st inversion'], //35
+  ['minor', 'diminished 7th arpeggio 2nd inversion'],
+  ['minor', 'diminished 7th arpeggio 3rd inversion'],
 ];
 
 export const SECTIONS_BY_LEVEL = {
@@ -41,6 +58,12 @@ export const SECTIONS_BY_LEVEL = {
   7: _.range(0, 6).concat(_.range(9, 17)),
   8: _.range(0, 6).concat(_.range(9, 17)),
   9: _.range(0, 17),
+  10: _.range(0, 3)
+    .concat(_.range(21, 23))
+    .concat(_.range(6, 9))
+    .concat(23)
+    .concat(_.range(9, 13))
+    .concat(_.range(24, 38)),
 };
 
 export const SYLLABUS = {
@@ -109,5 +132,15 @@ export const SYLLABUS = {
     F: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
     E: [0, 1, 2, 5, 9, 10, 11, 12, 13, 14, 15, 16],
     'C#': [1, 2, 4, 5, 7, 8, 10, 12, 14, 16],
+  },
+  10: {
+    Gb: [0, 9, 11, 21].concat(_.range(23, 27)).concat(_.range(30, 34)),
+    G: [0, 9, 10, 11, 12, 21].concat(_.range(23, 38)),
+    Ab: [0, 9, 11, 21].concat(_.range(23, 27)).concat(_.range(30, 34)),
+    A: [0, 9, 10, 11, 12, 22].concat(_.range(23, 38)),
+    Bb: [0, 6, 7, 8, 9, 11, 22].concat(_.range(23, 27)).concat(_.range(30, 34)),
+    B: [0, 6, 7, 8, 9, 11, 22].concat(_.range(23, 27)).concat(_.range(30, 34)),
+    'F#': [1, 2, 10, 12, 23, 27, 28, 29].concat(_.range(34, 38)),
+    'G#': [1, 2, 10, 12, 23, 27, 28, 29].concat(_.range(34, 38)),
   },
 };
