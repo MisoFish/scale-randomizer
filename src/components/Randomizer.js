@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { Container, Fab, Typography, Button } from '@material-ui/core';
-import { ArrowForward } from '@material-ui/icons';
+import React, { useState } from 'react';
+import { Container, Grid, Fab, Typography, Button } from '@material-ui/core';
+import { ArrowForward, Check, Clear } from '@material-ui/icons';
 import { SYLLABUS, SECTIONS, SECTIONS_BY_LEVEL } from '../Constants';
 import { makeStyles } from '@material-ui/core/styles';
+import { useRef } from 'react';
 
 const useStyles = makeStyles({
   root: {
@@ -13,6 +14,26 @@ const useStyles = makeStyles({
     width: '60px',
     height: '60px',
   },
+  successFab: {
+    backgroundColor: '#4caf50', // green
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#388e3c',
+    },
+  },
+  errorFab: {
+    backgroundColor: '#f44336', // red
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: '#d32f2f',
+    },
+  },
+  successButton: {
+    color: '#4caf50',
+  },
+  errorButton: {
+    color: '#f44336',
+  },
 });
 
 const Randomizer = ({ level }) => {
@@ -20,36 +41,76 @@ const Randomizer = ({ level }) => {
 
   const [display, setDisplay] = useState("Let's get started!");
   const [displayLine2, setDisplayLine2] = useState('');
-  const [counter, setCounter] = useState(-1);
+  const [inSession, setInSession] = useState(false);
+
+  const currentKey = useRef('');
+  const currentIndex = useRef(-1);
+  const incorrects = useRef(new Set());
+  const sectionIndex = useRef(0);
 
   const syllabus = SYLLABUS[level];
 
   const sectionIndexes = SECTIONS_BY_LEVEL[level];
   const sections = SECTIONS_BY_LEVEL[level].map((i) => SECTIONS[i]);
 
-  let i = counter;
+  const onButtonClick = (correct) => {
+    if (correct) {
+      incorrects.current.delete(
+        JSON.stringify([currentKey.current, currentIndex.current])
+      );
+    }
 
-  const onButtonClick = () => {
-    if (i >= sections.length - 1) {
+    if (
+      correct &&
+      incorrects.current.size === 0 &&
+      sectionIndex.current > sections.length - 1
+    ) {
       setDisplay('You have completed one set!');
       setDisplayLine2('How about another?');
-      setCounter(-1);
-    } else {
-      i++;
+      setInSession(false);
+      sectionIndex.current = 0;
+      return;
+    }
 
+    if (!inSession) {
+      setInSession(true);
+    }
+
+    const showIncorrect =
+      sectionIndex.current > sections.length - 1 ||
+      (incorrects.current.size > 0 && Math.random() < 0.3);
+
+    let chosen;
+
+    if (showIncorrect) {
+      const items = Array.from(incorrects.current);
+      const item = items[Math.floor(items.length * Math.random())];
+      chosen = JSON.parse(item);
+    } else {
       let randomKey = '';
       let keys = Object.keys(syllabus);
 
       while (!randomKey) {
-        randomKey = keys[(keys.length * Math.random()) << 0];
-        if (!syllabus[randomKey].includes(sectionIndexes[i])) {
-          randomKey = '';
+        const key = keys[Math.floor(keys.length * Math.random())];
+        if (syllabus[key].includes(sectionIndexes[sectionIndex.current])) {
+          randomKey = key;
         }
       }
-      setDisplay(`${randomKey} ${sections[i][0]}`);
-      setDisplayLine2(sections[i][1]);
-      setCounter(i);
+      chosen = [randomKey, sectionIndex.current];
+      sectionIndex.current++;
     }
+
+    if (!correct) {
+      incorrects.current.add(
+        JSON.stringify([currentKey.current, currentIndex.current])
+      );
+    }
+
+    currentKey.current = chosen[0];
+    currentIndex.current = chosen[1];
+
+    setDisplay(`${currentKey.current} ${sections[currentIndex.current][0]}`);
+    setDisplayLine2(sections[currentIndex.current][1]);
   };
 
   return (
@@ -57,16 +118,61 @@ const Randomizer = ({ level }) => {
       <div style={{ textAlign: 'center' }}>
         <Typography variant='h5'>{display}</Typography>
         <Typography variant='h5'>{displayLine2}</Typography>
-        <div style={{ marginTop: '25px' }}>
-          <Fab className={classes.root} color='primary' onClick={onButtonClick}>
-            <ArrowForward className={classes.arrowForward} />
-          </Fab>
-        </div>
-        <div>
-          <Button color='primary' onClick={onButtonClick}>
-            Next
-          </Button>
-        </div>
+        {inSession ? (
+          <div style={{ marginTop: '25px' }}>
+            <Grid container>
+              <Grid item xs={6}>
+                <Fab
+                  className={`${classes.root} ${classes.successFab}`}
+                  onClick={() => onButtonClick(true)}
+                >
+                  <Check className={classes.arrowForward} />
+                </Fab>
+              </Grid>
+              <Grid item xs={6}>
+                <Fab
+                  className={`${classes.root} ${classes.errorFab}`}
+                  onClick={() => onButtonClick(false)}
+                >
+                  <Clear className={classes.arrowForward} />
+                </Fab>
+              </Grid>
+              <Grid item xs={6}>
+                <Button
+                  className={classes.successButton}
+                  onClick={() => onButtonClick(true)}
+                >
+                  I got it right
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button
+                  className={classes.errorButton}
+                  onClick={() => onButtonClick(false)}
+                >
+                  Test me again later
+                </Button>
+              </Grid>
+            </Grid>
+          </div>
+        ) : (
+          <>
+            <div style={{ marginTop: '25px' }}>
+              <Fab
+                className={classes.root}
+                color='primary'
+                onClick={() => onButtonClick(true)}
+              >
+                <ArrowForward className={classes.arrowForward} />
+              </Fab>
+            </div>
+            <div>
+              <Button color='primary' onClick={() => onButtonClick(true)}>
+                Next
+              </Button>
+            </div>
+          </>
+        )}
       </div>
     </Container>
   );
